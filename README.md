@@ -2,7 +2,7 @@
 
 **Franky** is a color scheme designed for coding, it start as the `catppuccin-mocha` theme
 frankensteined with `github-dark` and a grain of salt of `rasmus`. So, **Franky** works
-well next `catppuccin` dark themes.  
+well next `catppuccin` dark themes.
 
 ## Road Map
 
