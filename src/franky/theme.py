@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum, StrEnum
-from typing import TYPE_CHECKING, TypedDict
+from typing import TYPE_CHECKING, Literal, TypedDict
 
 
 if TYPE_CHECKING:
@@ -45,11 +45,11 @@ class Theme(TypedDict):
 
 
 class Swatch(StrEnum):
-    """Franky colour swatch enumeration."""
+    """Franky colour swatch."""
 
     # Foreground and Background
     text = "#c9c9c9"
-    base = "#1e1e2e"
+    base = "#151524"  # "#1e1e2e"
 
     rosewater = "#f5e0dc"
     flamingo = "#f2cdcd"
@@ -73,8 +73,10 @@ class Swatch(StrEnum):
     lang_pink = "#ff938a"
     lang_red = "#d85651"
     lang_purple = "#977ebc"
+
     subtext1 = "#b1b1b1"
     subtext0 = "#a6a596"
+
     overlay2 = "#909dab"
     overlay1 = "#7f849c"
     overlay0 = "#6f6b58"
@@ -83,14 +85,13 @@ class Swatch(StrEnum):
     surface2 = "#54595f"
     surface1 = "#373e47"
     surface0 = "#2a2a3c"
+
     mantle = "#181825"
     crust = "#141817"
+
     uv2 = "#521f9c"
     uv1 = "#340c6f"
     uv0 = "#16101f"
-
-    # None
-    none = ""
 
 
 class Ansi(StrEnum):
@@ -116,7 +117,7 @@ class Ansi(StrEnum):
 
 
 class Mod(StrEnum):
-    """Style's modifier enumeration."""
+    """Style's modifier."""
 
     normal = ""
     bold = "bold"
@@ -135,12 +136,21 @@ class Mod(StrEnum):
 
 
 @dataclass
+class Underline:
+    """Underline style."""
+
+    color: Swatch | None = None
+    style: Literal["line", "curl", "dashed", "dotted", "double_line"] = "line"
+
+
+@dataclass
 class Style:
     """Style datatype."""
 
-    fg: Swatch = Swatch.none
-    bg: Swatch = Swatch.none
+    fg: Swatch | None = None
+    bg: Swatch | None = None
     mods: tuple[Mod, ...] = ()
+    underline: Underline | None = None
 
     def _join_mods(self) -> str:
         return f"{' '.join(self.mods)}" if self.mods else ""
@@ -169,53 +179,195 @@ class Style:
 class Lang(Style, Enum):
     """Style names for code highlighting."""
 
-    comment = (Swatch.lang_green, Swatch.none, (Mod.italic,))
-    number = Swatch.lang_pink
-    string = Swatch.lang_blue
-    escape = Swatch.lang_pink
-    keyword = Swatch.lang_red
+    attribute = Swatch.text
     builtin = Swatch.lang_blue
-    variable = Swatch.text
+    comment = (Swatch.surface2, None, (Mod.italic,))
     constant = Swatch.lang_blue
-    type = (Swatch.subtext0, Swatch.none, (Mod.italic,))
     constructor = Swatch.lang_purple
-    function = Swatch.lang_purple
+    control = Swatch.lang_red
+    control_conditional = Swatch.lang_red
+    control_repeat = Swatch.lang_red
+    control_import = Swatch.lang_red
+    control_return = Swatch.lang_red
+    control_exception = Swatch.lang_red
     decorator = Swatch.lang_purple
-    macro = Swatch.lang_purple
+    directive = Swatch.lang_pink
+    escape = Swatch.lang_pink
+    exception = (Swatch.subtext0, None, (Mod.italic,))
+    function = Swatch.lang_purple
+    function_method = Swatch.lang_purple
+    function_method_private = Swatch.lang_purple
+    function_special = Swatch.lang_purple
+    keyword = Swatch.lang_red
+    keyword_operator = Swatch.lang_red
+    keyword_function = Swatch.lang_red
+    keyword_storage = Swatch.lang_red
+    keyword_storage_type = Swatch.lang_red
+    keyword_storage_modifier = Swatch.lang_red
     label = Swatch.lang_yellow
-    namespace = Swatch.text
-    operator = Swatch.lang_red
     magic = Swatch.lang_blue
-    exception = (Swatch.subtext0, Swatch.none, (Mod.italic,))
+    macro = Swatch.lang_purple
+    namespace = Swatch.text
+    number = Swatch.lang_pink
+    operator = Swatch.lang_red
+    punctuation = Swatch.overlay0
+    punctuation_bracket = Swatch.overlay0
+    punctuation_delimiter = Swatch.overlay0
+    punctuation_special = Swatch.overlay0
+    string = Swatch.lang_blue
+    special = Swatch.lang_yellow
+    tag = Swatch.lang_yellow
+    type = (Swatch.subtext0, None, (Mod.italic,))
+    type_builtin = Swatch.lang_blue
+    type_enum_member = Swatch.lang_blue
+    variable = Swatch.text
+    variable_builtin = Swatch.lang_blue
+    variable_parameter = (Swatch.subtext0, None, (Mod.italic,))
+    variable_other = Swatch.text
+    variable_other_member = Swatch.text
+    variable_other_member_private = Swatch.text
 
 
 class Meta(Style, Enum):
     """Style names for special forms."""
 
-    whitespace = (Swatch.base, Swatch.text, (Mod.underlined,))
-    caret = ()
+    whitespace = (Swatch.base, Swatch.text, (Mod.underlined,), Underline(style="line"))
+    caret = Swatch.rosewater
     filename = Swatch.lang_blue
-    filename_emphasis = (Swatch.lang_blue, Swatch.none, (Mod.bold,))
+    filename_emphasis = (Swatch.lang_blue, None, (Mod.bold,))
 
 
 class Generic(Style, Enum):
     """Style names for generic modifiers."""
 
-    deleted = (Swatch.subtext0, Swatch.none, (Mod.crossed_out,))
-    emphasis = (Swatch.none, Swatch.none, (Mod.italic,))
-    strong = (Swatch.none, Swatch.none, (Mod.bold,))
-    emphasis_strong = (Swatch.none, Swatch.none, (Mod.bold, Mod.italic))
+    deleted = (Swatch.subtext0, None, (Mod.crossed_out,))
+    emphasis = (None, None, (Mod.italic,))
+    strong = (None, None, (Mod.bold,))
+    emphasis_strong = (None, None, (Mod.bold, Mod.italic))
 
 
 class UI(Style, Enum):
     """Style names for ui elements."""
 
-    cursor = Swatch.base, Swatch.rosewater
-    selection = Swatch.text, Swatch.blue
+    background = Swatch.subtext1, Swatch.base
+    background_separator = Swatch.subtext1, Swatch.base
+
+    cursor = Swatch.crust, Swatch.surface2
+    cursor_insert = Swatch.base, Swatch.overlay1
+    cursor_select = Swatch.base, Swatch.overlay1
+    cursor_match = Swatch.yellow, Swatch.base
+    cursor_primary = Swatch.base, Swatch.overlay2
+    cursor_primary_insert = Swatch.base, Swatch.text
+    cursor_primary_select = Swatch.base, Swatch.text
+
+    cursor_line = (Swatch.base, Swatch.surface0)
+
+    selection = Swatch.maroon, Swatch.uv0
+    selection_primary = Swatch.maroon, Swatch.uv0
+
+    ruler = None, Swatch.mantle
+    indent_guide = Swatch.surface1
+    inlay_hint = Swatch.surface2, None, (Mod.italic,)
+    wrap = Swatch.surface2
+    jump_label = Swatch.lang_yellow, Swatch.uv2
+
     exc_name = Swatch.lang_purple
     topline = Swatch.lang_purple
-    linenr = Swatch.surface2
-    linenr_select = Swatch.overlay2
-    cursor_line = (Swatch.base, Swatch.surface0)
+    line_number = Swatch.surface2
+    line_number_select = Swatch.overlay2
     breakpoint = Swatch.text
     breakpoint_active = Swatch.sky
+
+    hint = Swatch.blue, Swatch.base
+    info = Swatch.sky, Swatch.base
+    warning = Swatch.maroon, Swatch.base
+    error = Swatch.red, Swatch.base
+
+    diagnostic_hint = None, None, (Mod.underlined,), Underline(Swatch.base, "dotted")
+    diagnostic_info = None, None, (Mod.underlined,), Underline(Swatch.base, "dotted")
+    diagnostic_warning = None, None, (Mod.underlined,), Underline(Swatch.base, "dotted")
+    diagnostic_error = None, None, (Mod.underlined,), Underline(Swatch.red, "dotted")
+    diagnostic_unnecessary = None, None, (Mod.dim,)
+
+    diff_plus = Swatch.green
+    diff_minus = Swatch.red
+    diff_delta = Swatch.yellow
+    diff_delta_moved = Swatch.sky
+
+    gutter = None, Swatch.base
+    gutter_selected = None, Swatch.uv1
+
+    status_line = Swatch.overlay2, Swatch.mantle
+    status_line_inactive = Swatch.surface2, Swatch.mantle
+    status_line_normal = Swatch.uv0, Swatch.teal, (Mod.bold,)
+    status_line_insert = Swatch.uv0, Swatch.yellow, (Mod.bold,)
+    status_line_select = Swatch.uv0, Swatch.mauve, (Mod.bold,)
+
+    buffer_line = Swatch.overlay0
+    buffer_line_active = Swatch.mauve
+    buffer_line_background = Swatch.subtext0, Swatch.uv0
+
+
+class Markup(Style, Enum):
+    """Style names for Markup language."""
+
+    markup = Swatch.subtext1
+    heading_marker = Swatch.uv2, Swatch.uv2
+    heading_1 = Swatch.pink, Swatch.uv1, (Mod.bold,)
+    heading_2 = None, Swatch.uv2, (Mod.bold,)
+    heading_3 = Swatch.subtext0, Swatch.uv1, (Mod.bold,)
+    heading_4 = Swatch.subtext1, Swatch.uv1
+    heading_5 = Swatch.subtext1, Swatch.uv1
+    heading_6 = Swatch.subtext1, Swatch.uv1
+
+    list_unnumbered = Swatch.flamingo, None, (Mod.bold,)
+    list_numbered = Swatch.flamingo, None, (Mod.bold,)
+    list_unchecked = Swatch.surface2
+    list_checked = Swatch.green
+
+    bold = None, None, (Mod.bold,)
+    italic = None, None, (Mod.italic,)
+    strike_through = None, None, (Mod.crossed_out,)
+
+    link_url = Swatch.surface2, Swatch.base, (Mod.reversed,)
+    link_label = Swatch.teal, None, (Mod.bold,)
+    link_text = Swatch.sky, None, (Mod.underlined,), Underline(style="line")
+
+    quote = None, Swatch.surface0, (Mod.italic,)
+
+    raw = Swatch.lang_yellow
+    raw_inline = Swatch.lang_yellow, Swatch.surface1
+    raw_block = Swatch.text, Swatch.uv0
+
+
+def Trans(color: str) -> str:  # noqa: N802
+    """Returns franky Hex color from Catppuccin one."""
+    map_: dict[str, str] = {
+        "#f5e0dc": Swatch.rosewater,
+        "#f2cdcd": Swatch.flamingo,
+        "#f5c2e7": Swatch.pink,
+        "#cba6f7": Swatch.mauve,
+        "#f38ba8": Swatch.red,
+        "#eba0ac": Swatch.maroon,
+        "#fab387": Swatch.peach,
+        "#f9e2af": Swatch.yellow,
+        "#a6e3a1": Swatch.green,
+        "#94e2d5": Swatch.teal,
+        "#89dceb": Swatch.sky,
+        "#74c7ec": Swatch.sapphire,
+        "#89b4fa": Swatch.blue,
+        "#b4befe": Swatch.lavender,
+        "#cdd6f4": Swatch.text,
+        "#bac2de": Swatch.subtext1,
+        "#a6adc8": Swatch.subtext0,
+        "#9399b2": Swatch.overlay2,
+        "#7f849c": Swatch.overlay1,
+        "#6c7086": Swatch.overlay0,
+        "#585b70": Swatch.surface2,
+        "#45475a": Swatch.surface1,
+        "#313244": Swatch.surface0,
+        "#1e1e2e": Swatch.base,
+        "#181825": Swatch.mantle,
+        "#11111b": Swatch.crust,
+    }
+    return map_[color]
