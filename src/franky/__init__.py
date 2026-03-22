@@ -16,7 +16,7 @@
 #
 from __future__ import annotations
 
-from franky.theme import UI, Ansi, Generic, Lang, Meta, Mod, Style, Swatch, Theme
+from franky.theme import UI, Ansi, Generic, Lang, Markup, Meta, Mod, Style, Swatch, Theme
 
 
 __all__ = [
@@ -24,6 +24,7 @@ __all__ = [
     "Ansi",
     "Generic",
     "Lang",
+    "Markup",
     "Meta",
     "Mod",
     "Style",
