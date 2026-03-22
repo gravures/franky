@@ -50,14 +50,14 @@ config_paths = ...
 class PrettyErrorsConfig:
     def __init__(self, instance=...) -> None:
         ...
-    
+
     def configure(self, **kwargs):
         """Configure settings governing how exceptions are displayed."""
         ...
-    
+
     def copy(self):
         ...
-    
+
     __copy__ = ...
 
 
@@ -96,19 +96,19 @@ class ExceptionWriter:
     """
     def __init__(self) -> None:
         ...
-    
+
     def get_terminal_width(self):
         """Width of terminal in characters."""
         ...
-    
+
     def get_line_length(self):
         """Calculated line length."""
         ...
-    
+
     def visible_length(self, s):
         """Visible length of string (i.e. without ansi escape sequences)"""
         ...
-    
+
     def output_text(self, texts):
         """Write list of texts to stderr.
         Use this function for all output.
@@ -116,7 +116,7 @@ class ExceptionWriter:
             texts: a string or a list of strings
         """
         ...
-    
+
     def write_header(self):
         """Write stack trace header to screen.
 
@@ -126,7 +126,7 @@ class ExceptionWriter:
                 self.config.timestamp_function()
                 self.config.header_color"""
         ...
-    
+
     def write_location(self, path, line, function):
         """Write location of frame to screen.
 
@@ -141,7 +141,7 @@ class ExceptionWriter:
             self.config.link_color
         """
         ...
-    
+
     def write_link(self, filepath, line):
         """Write link of location to screen.  Default version is clickable in VSCode.
 
@@ -149,7 +149,7 @@ class ExceptionWriter:
             self.config.link_color
         """
         ...
-    
+
     def write_code(self, filepath, line, module_globals, is_final, point_at=...):
         """Write frame code to screen.
         Parameters:
@@ -175,11 +175,11 @@ class ExceptionWriter:
             self.config.syntax_error_color
         """
         ...
-    
+
     def exception_name(self, exception):
         """Name of exception."""
         ...
-    
+
     def write_exception(self, exception_type, exception_value):
         """Write exception to screen.
 
@@ -189,7 +189,7 @@ class ExceptionWriter:
             self.config.exception_arg_color
         """
         ...
-    
+
 
 
 exception_writer = ...
@@ -202,17 +202,17 @@ class StdErr:
     """Replaces sys.stderr in order to scrape it, when capturing stack trace is unavailable."""
     def __init__(self) -> None:
         ...
-    
+
     def __getattr__(self, name):
         ...
-    
+
     def __enter__(self, *args, **kwargs):
         ...
-    
+
     def write(self, text):
         """Replaces sys.stderr.write, outputing pretty errors."""
         ...
-    
+
 
 
 def replace_stderr(force=...):
