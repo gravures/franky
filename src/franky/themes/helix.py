@@ -152,11 +152,11 @@ keyword = {format(Lang.keyword)}
 'ui.background' = {format(UI.background)}
 'ui.background.separator' = {format(UI.background_separator)}
 
-'ui.cursor' = {format(UI.cursor)}
+'ui.cursor.normal' = {format(UI.cursor)}
 'ui.cursor.insert' = {format(UI.cursor_line)}
 'ui.cursor.select' = {format(UI.cursor_select)}
 'ui.cursor.match' = {format(UI.cursor_match)}
-'ui.cursor.primary' = {format(UI.cursor_primary)}
+'ui.cursor.primary.normal' = {format(UI.cursor_primary)}
 'ui.cursor.primary.insert' = {format(UI.cursor_primary_insert)}
 'ui.cursor.primary.select' = {format(UI.cursor_primary_select)}
 
