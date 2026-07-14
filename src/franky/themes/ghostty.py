@@ -26,33 +26,33 @@ from franky import UI, Ansi, Swatch, Theme
 def main() -> Theme:
     return {
         "content": f"""
-            palette = 0={Ansi.black}
-            palette = 1={Ansi.red}
-            palette = 2={Ansi.green}
-            palette = 3={Ansi.yellow}
-            palette = 4={Ansi.blue}
-            palette = 5={Ansi.magenta}
-            palette = 6={Ansi.cyan}
-            palette = 7={Ansi.white}
+palette = 0={Ansi.black}
+palette = 1={Ansi.red}
+palette = 2={Ansi.green}
+palette = 3={Ansi.yellow}
+palette = 4={Ansi.blue}
+palette = 5={Ansi.magenta}
+palette = 6={Ansi.cyan}
+palette = 7={Ansi.white}
 
-            palette = 8={Ansi.bright_black}
-            palette = 9={Ansi.bright_red}
-            palette = 10={Ansi.bright_green}
-            palette = 11={Ansi.bright_yellow}
-            palette = 12={Ansi.bright_blue}
-            palette = 13={Ansi.bright_magenta}
-            palette = 14={Ansi.bright_cyan}
-            palette = 15={Ansi.bright_white}
+palette = 8={Ansi.bright_black}
+palette = 9={Ansi.bright_red}
+palette = 10={Ansi.bright_green}
+palette = 11={Ansi.bright_yellow}
+palette = 12={Ansi.bright_blue}
+palette = 13={Ansi.bright_magenta}
+palette = 14={Ansi.bright_cyan}
+palette = 15={Ansi.bright_white}
 
-            background = {Swatch.base}
-            foreground = {Swatch.text}
+background = {Swatch.mantle}
+foreground = {Swatch.text}
 
-            cursor-color = {UI.cursor.bg}
-            cursor-text = {UI.cursor.fg}
+cursor-text = {UI.cursor.fg}
+cursor-color = {UI.cursor.bg}
 
-            selection-background = {UI.selection.bg}
-            selection-foreground = {UI.selection.fg}
-            """,
+selection-background = {UI.selection.bg}
+selection-foreground = {UI.selection.fg}
+""",
         "place": {
             "posix": Path.home() / ".config" / "ghostty" / "themes",
             "darwin": Path.home() / ".config" / "ghostty" / "themes",
