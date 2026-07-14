@@ -27,7 +27,7 @@ from enum import StrEnum
 from importlib import import_module
 from os import environ
 from pathlib import Path
-from typing import TYPE_CHECKING, Final, Literal, NamedTuple, Never
+from typing import TYPE_CHECKING, Final, Literal, NamedTuple, Never, cast
 
 from deluxe import mureq
 from deluxe.availability import hints
@@ -84,8 +84,6 @@ CliError.register(
 class Franky(Cli):
     """Franky command line interface."""
 
-    # FIXME: command sub help outputs "usage:usage"
-
     def __init__(self) -> None:
         super().__init__(
             prog=PROG_NAME,
@@ -106,6 +104,12 @@ class Franky(Cli):
             default=[],
             choices=["all", *list_theme_modules()],
         )
+        install.add_argument(
+            "-y",
+            "--yes",
+            help="do not ask for confirmation",
+            action="store_true",
+        )
         self.add_command(
             self.list_themes,
             help="list available themes",
@@ -121,35 +125,39 @@ class Franky(Cli):
 
     def install(self, opts: argparse.Namespace) -> None:  # noqa: PLR6301
         for theme in opts.themes:
-            install_theme(theme)
+            install_theme(theme, not opts.yes)
 
     def list_themes(self, _opts: argparse.Namespace) -> None:  # noqa: PLR6301
         sys.stdout.write("\n".join(list_theme_modules()) + "\n")
 
 
-def install_theme(name: str) -> None:
-    try:
+def install_theme(name: str, ask: bool) -> None:
+    try:  # noqa: PLW0717
         mod = import_module(f"franky.themes.{name}")
         theme: Theme = mod.main()
         if not (place := theme["place"][PLATFORM]):
             msg = f"{name} theme is not installable on {PLATFORM} platform."
             raise ThemeError(msg)
-        write_theme(name, place, theme["file"], theme["content"])
+        write_theme(name, place, theme["file"], theme["content"], ask)
     except (AttributeError, KeyError, LookupError) as err:
         msg = "malformed theme."
         raise ThemeError(msg) from err
 
 
-def write_theme(name: str, path: Path, file: str, content: str) -> None:
+def write_theme(name: str, path: Path, file: str, content: str, ask: bool) -> None:
     install_path = Path(path, file)
     sys.stderr.write(f"the {name} theme will be installed here:\n")
     sys.stderr.write(f"  {install_path}\n")
 
-    if (_ := input("accept? [Y/n]: ")) and _ in "nN":
+    if ask and (_ := input("accept? [Y/n]: ")) and _ in "nN":
         return
 
     if install_path.exists():
-        if (_ := input(f"a <{file}> file already exists, replace it? [Y/n]: ")) and _ in "nN":
+        if (
+            ask
+            and (_ := input(f"a <{file}> file already exists, replace it? [Y/n]: "))
+            and _ in "nN"
+        ):
             return
         # TODO: add option to backup the file
         install_path.unlink()
@@ -223,11 +231,11 @@ def list_github_directory(
     try:
         response = mureq.get(endpoint, headers=headers, timeout=3)
         response.raise_for_status()
-        payload = response.json()
+        tmp = cast("list[dict[str, str]] | dict[str, str]", response.json())
     except (OSError, mureq.HTTPErrorStatus) as err:
         raise OSError from err
 
-    payload: list[dict[str, str]] = [payload] if isinstance(payload, dict) else payload
+    payload: list[dict[str, str]] = [tmp] if isinstance(tmp, dict) else tmp
     return [
         GitHubContent(
             type=GithubContentType(e["type"]),
