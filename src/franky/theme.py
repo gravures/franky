@@ -86,12 +86,12 @@ class Swatch(StrEnum):
     surface1 = "#373e47"
     surface0 = "#2a2a3c"
 
-    mantle = "#181825"
-    crust = "#141817"
+    mantle = "#110E17"
+    crust = "#0B090F"
 
     uv2 = "#521f9c"
     uv1 = "#340c6f"
-    uv0 = "#16101f"
+    uv0 = "#09070D"
 
 
 class Ansi(StrEnum):
@@ -251,10 +251,11 @@ class UI(Style, Enum):
 
     background = Swatch.subtext1, Swatch.base
     background_separator = Swatch.subtext1, Swatch.base
+    tui_background = Swatch.subtext1, Swatch.mantle
 
-    cursor = Swatch.crust, Swatch.surface2
-    cursor_insert = Swatch.base, Swatch.overlay1
-    cursor_select = Swatch.base, Swatch.overlay1
+    cursor = Swatch.base, Swatch.overlay2
+    cursor_insert = Swatch.base, Swatch.overlay2
+    cursor_select = Swatch.base, Swatch.overlay2
     cursor_match = Swatch.yellow, Swatch.base
     cursor_primary = Swatch.base, Swatch.overlay2
     cursor_primary_insert = Swatch.base, Swatch.text
@@ -273,7 +274,7 @@ class UI(Style, Enum):
 
     exc_name = Swatch.lang_purple
     topline = Swatch.lang_purple
-    line_number = Swatch.surface2
+    line_number = Swatch.surface1
     line_number_select = Swatch.overlay2
     breakpoint = Swatch.text
     breakpoint_active = Swatch.sky
@@ -307,6 +308,9 @@ class UI(Style, Enum):
     buffer_line_active = Swatch.mauve
     buffer_line_background = Swatch.subtext0, Swatch.uv0
 
+    scrollbar_track = Swatch.uv0, Swatch.uv0
+    scrollbar_knob = Swatch.lang_purple, Swatch.uv0
+
 
 class Markup(Style, Enum):
     """Style names for Markup language."""
@@ -329,7 +333,7 @@ class Markup(Style, Enum):
     italic = None, None, (Mod.italic,)
     strike_through = None, None, (Mod.crossed_out,)
 
-    link_url = Swatch.surface2, Swatch.base, (Mod.reversed,)
+    link_url = Swatch.base, Swatch.surface2, (Mod.reversed,)
     link_label = Swatch.teal, None, (Mod.bold,)
     link_text = Swatch.sky, None, (Mod.underlined,), Underline(style="line")
 
