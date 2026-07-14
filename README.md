@@ -9,6 +9,7 @@ well next `catppuccin` dark themes.
 - [x] Helix editor
 - [x] Ipython shell
 - [x] Ghostty
+- [x] Qman
 - [ ] shell: LS_COLORS + man colors + ncurse colors
 - [ ] Yazi
 - [ ] Delta
