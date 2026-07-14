@@ -8,6 +8,7 @@ keywords = ["color", "colour", "theme", "palette", "scheme", "terminal"]
 classifiers = [
   "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
   "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -21,6 +22,7 @@ urls.homepage = "https://github.com/gravures/franky/"
 urls.repository = "https://github.com/gravures/franky/"
 urls.documentation = "https://github.com/gravures/franky/"
 urls.issue = "https://github.com/gravures/franky/issues"
+urls.Changelog = "https://github.com/gravures/franky/releases"
 
 requires-python = ">=3.11"
 dynamic = ["version"]
@@ -37,8 +39,6 @@ members = ["packages/*"]
 
 [tool.uv.sources]
 franky = { workspace = true }
-# standard-deluxe = { git = "https://github.com/gravures/standard-deluxe", rev = "dev-features" }
-standard-deluxe = { path = "../standard-deluxe", editable = true }
 
 #####################################################
 # Build Settings
@@ -52,7 +52,17 @@ distribution = true
 
 [tool.pdm.build]
 package-dir = "src"
-source-includes = ["CHANGELOG.md"]
+source-includes = [
+  "tools/",
+  "typings/",
+  "CHANGELOG.md",
+  "changelog.tera",
+  "cog.toml",
+  "mise.toml",
+  "pyrightconfig.json",
+  "ruff.toml",
+  "uv.lock",
+]
 
 [tool.pdm.version]
 source = "scm"
@@ -66,39 +76,3 @@ write_template = "__version__ = '{}'"
 #####################################################
 [dependency-groups]
 dev = ["basedpyright>=1.28", "ruff>=0.9", "pre-commit>=4.1"]
-test = [
-  "pytest>=9.0",
-  "hypothesis",
-  "coverage[toml]>=7.13",
-  "tox>=4.24",
-  "tox-pdm>=0.7.2",
-  "dead>=2.1",
-]
-
-#####################################################
-# PDM SCRIPTS
-#####################################################
-[tool.pdm.scripts]
-lock_ = "uv lock --no-python-downloads"
-sync_ = "uv sync --locked --all-packages --no-python-downloads {args}"
-build_ = "uv build --all-packages --no-python-downloads"
-publish_ = "uv publish -v --no-python-downloads ./dist/*"
-install_ = { composite = ["lock_", "sync_"] }
-list_ = "pdm list --fields name,groups,version,licenses,homepage --sort groups,name,licenses --exclude :sub"
-
-test-types = "pdm run basedpyright --stats ./**"
-
-pc-init = { composite = ["pre-commit install --install-hooks", "pc-update"] }
-pc-update = "pre-commit autoupdate"
-pc-check = { env = { "SKIP" = "basedpyright" }, cmd = "pre-commit run --all-files" }
-pc-clean = "pre-commit clean && pre-commit gc"
-
-checkup = { composite = [
-  "pdm show",
-  "list_",
-  "tokei --sort code",
-  "pc-check",
-  "test-types",
-  "dead",
-  # "test-cover",
-], keep_going = true }
