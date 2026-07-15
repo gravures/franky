@@ -54,7 +54,7 @@ jobs:
 
     - name: Push version tags
       run: |
-        git push origin 'refs/tags/*-v*'
+        git push origin --tags
 
     - name: install project dependencies
       run: |
@@ -64,12 +64,6 @@ jobs:
       shell: bash
       run: |
         mise run project:build
-
-    - name: upload wheels
-      uses: actions/upload-artifact@v4
-      with:
-        name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
-        path: ${{ github.workspace }}/dist/*
 
     - name: publish on pypi
       env:
