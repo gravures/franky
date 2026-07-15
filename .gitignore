@@ -146,7 +146,6 @@ cython_debug/
 
 # distribution generated file
 src/**/_version.py
-**/CHANGELOG.md
 
 # sourcery
 .sourcery.yaml
