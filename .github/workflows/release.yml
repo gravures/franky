@@ -1,0 +1,78 @@
+# This workflow will only run jobs after
+# the Test workflow completes with success on the main branch.
+name: Publish release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'packages/**'
+      - '*.lock'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Bump version, make changelog
+    env:
+      PYTHON_VERSION: "3.14"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: fetch all tags
+      run: |
+        git fetch --tags --force origin
+        git describe --tags --always
+
+    - name: install mise with Python 3.14
+      uses: jdx/mise-action@v4
+      with:
+        version: 2026.6.14
+        install: true
+        cache: true
+
+    - name: configure git user
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: bump version, make changelog and commit
+      run: |
+        mise run version:bump
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.github_token }}
+        branch: ${{ github.head_ref || github.ref_name }}
+
+    - name: Push version tags
+      run: |
+        git push origin 'refs/tags/*-v*'
+
+    - name: install project dependencies
+      run: |
+        mise run project:sync --no-dev
+
+    - name: build all packages
+      shell: bash
+      run: |
+        mise run project:build
+
+    - name: upload wheels
+      uses: actions/upload-artifact@v4
+      with:
+        name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
+        path: ${{ github.workspace }}/dist/*
+
+    - name: publish on pypi
+      env:
+        UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      run: |
+        mise run project:publish
