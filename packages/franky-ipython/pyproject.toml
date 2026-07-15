@@ -7,13 +7,14 @@ name = "franky-ipython"
 description = "Ipython dark theme extension"
 authors = [{ name = "Gilles Coissac", email = "gilles@ideographe.fr" }]
 license = { text = "GPL-3.0" }
-dependencies = ["franky"]
+dependencies = ["franky-theme"]
 readme = "README.md"
 dynamic = ["version"]
 keywords = ["ipython", "extension", "theme"]
 classifiers = [
   "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
   "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -29,13 +30,17 @@ urls.repository = "https://github.com/gravures/franky/packages/franky-ipython"
 urls.documentation = "https://github.com/gravures/franky/"
 urls.issue = "https://github.com/gravures/franky/issues"
 
+requires-python = ">=3.11"
+
 [tool.pdm.build]
-source-includes = ["CHANGELOG.md"]
+source-includes = ["CHANGELOG.md", "VERSION"]
 
 [tool.pdm.version]
 source = "scm"
 tag_regex = '^franky-ipython-v(?:\D*)?(?P<version>([1-9][0-9]*!)?(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*((a|b|c|rc)(0|[1-9][0-9]*))?(\.post(0|[1-9][0-9]*))?(\.dev(0|[1-9][0-9]*))?$)$'
 fallback_version = "0.0.0"
+write_to = "./VERSION"
+write_template = "{}"
 
 [dependency-groups]
 dev = ["ipython"]
