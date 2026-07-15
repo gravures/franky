@@ -4,8 +4,8 @@ requires-python = ">=3.11"
 
 [manifest]
 members = [
-    "franky",
     "franky-ipython",
+    "franky-theme",
 ]
 
 [[package]]
@@ -84,7 +84,25 @@ wheels = [
 ]
 
 [[package]]
-name = "franky"
+name = "franky-ipython"
+source = { editable = "packages/franky-ipython" }
+dependencies = [
+    { name = "franky-theme" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "ipython" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "franky-theme", editable = "." }]
+
+[package.metadata.requires-dev]
+dev = [{ name = "ipython" }]
+
+[[package]]
+name = "franky-theme"
 source = { editable = "." }
 dependencies = [
     { name = "pretty-errors" },
@@ -110,24 +128,6 @@ dev = [
     { name = "pre-commit", specifier = ">=4.1" },
     { name = "ruff", specifier = ">=0.9" },
 ]
-
-[[package]]
-name = "franky-ipython"
-source = { editable = "packages/franky-ipython" }
-dependencies = [
-    { name = "franky" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "ipython" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "franky", editable = "." }]
-
-[package.metadata.requires-dev]
-dev = [{ name = "ipython" }]
 
 [[package]]
 name = "identify"

@@ -1,5 +1,5 @@
 [project]
-name = "franky"
+name = "franky-theme"
 description = "Franky colour theme library."
 authors = [{ name = "Gilles Coissac", email = "gilles@ideographe.fr" }]
 license = { text = "GPL-3.0" }
@@ -38,7 +38,7 @@ package = true
 members = ["packages/*"]
 
 [tool.uv.sources]
-franky = { workspace = true }
+franky-theme = { workspace = true }
 
 #####################################################
 # Build Settings
@@ -66,8 +66,6 @@ source-includes = [
 
 [tool.pdm.version]
 source = "scm"
-tag_regex = '^v(?:\D*)?(?P<version>([1-9][0-9]*!)?(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*((a|b|c|rc)(0|[1-9][0-9]*))?(\.post(0|[1-9][0-9]*))?(\.dev(0|[1-9][0-9]*))?$)$'
-fallback_version = "0.0.0"
 write_to = "franky/_version.py"
 write_template = "__version__ = '{}'"
 
