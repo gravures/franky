@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## franky-ipython-v0.1.0 - 2026-07-15
+#### Features
+- (**ipython**) add franky ipython plugin. - (dd745fc) - *gravures*
+#### Refactoring
+- (**ipython**) change theme.Ui to theme.UI - (f606c64) - *gravures*
+
+- - -
+
 ## franky-ipython-v0.1.0 - 2026-03-22
 #### Features
 - (**ipython**) add franky ipython plugin. - (dd745fc) - *gravures*
