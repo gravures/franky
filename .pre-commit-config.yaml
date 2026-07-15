@@ -1,6 +1,6 @@
 fail_fast: false
 default_language_version:
-  python: python3.11
+  python: python3.14
 
 repos:
   # Conventional commit
@@ -65,13 +65,13 @@ repos:
         files: requirements
         args: ["--short-report"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.17
+    rev: v0.15.21
     hooks:
       - id: ruff
         args: ["--ignore=PLR0912,RUF100,T20,D,TD,FIX,DOC"]
       - id: ruff-format
   # UV-lock
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.11.21
+    rev: 0.11.28
     hooks:
       - id: uv-lock
