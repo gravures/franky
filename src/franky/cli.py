@@ -25,6 +25,7 @@ import sys
 from datetime import datetime
 from enum import StrEnum
 from importlib import import_module
+from importlib.resources import files
 from os import environ
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, Literal, NamedTuple, Never, cast
@@ -172,7 +173,8 @@ def write_theme(name: str, path: Path, file: str, content: str, ask: bool) -> No
 def list_theme_modules() -> list[str]:
     """Return a list of module names available in the franky.themes package."""
     # NOTE: should we filter modules for user PLATFORM?
-    themes = list({name for _, name, _ in pkgutil.iter_modules(["src/franky/themes"])})
+    themes_dir = files("franky.themes")
+    themes = list({name for _, name, _ in pkgutil.iter_modules([str(themes_dir)])})
     themes.sort()
     return themes
 
