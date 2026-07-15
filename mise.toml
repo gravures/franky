@@ -29,7 +29,6 @@ depends = [
   { task = "sync", args = ["--all-groups"] },
 ]
 run = [
-  { task = "python", args = ["./tools/traceback.py"]},
   { task = "show"},
 ]
 
