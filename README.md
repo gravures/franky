@@ -1,6 +1,6 @@
 # Franky
 
-[Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fgravures%2Ffranky%2Fmain%2Fpyproject.toml) ![GitHub License](https://img.shields.io/github/license/gravures/standard-deluxe) ![OS support](https://img.shields.io/badge/OS-macOS%20Linux%20Windows-red) ![downloads](assets/downloads.svg) <!-- rumdl-disable-line
+[Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fgravures%2Ffranky%2Fmain%2Fpyproject.toml) ![GitHub License](https://img.shields.io/github/license/gravures/standard-deluxe) ![OS support](https://img.shields.io/badge/OS-macOS%20Linux%20Windows-red) ![downloads](assets/downloads.svg)
 
 **Franky** is a color scheme designed for coding, it start as the `catppuccin-mocha` theme
 frankensteined with `github-dark` and a grain of salt of `rasmus`. So, **Franky** works
