@@ -89,7 +89,6 @@ class Franky(Cli):
         super().__init__(
             prog=PROG_NAME,
             version=_version.__version__,
-            prefix=True,
             shell_completion=False,
         )
 
