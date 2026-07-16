@@ -2,9 +2,7 @@
 
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fgravures%2Ffranky%2Fmain%2Fpyproject.toml) ![GitHub License](https://img.shields.io/github/license/gravures/standard-deluxe) ![OS support](https://img.shields.io/badge/OS-macOS%20Linux%20Windows-red) ![downloads](assets/downloads.svg)
 
-**Franky** is a color scheme designed for coding, it start as the `catppuccin-mocha` theme
-frankensteined with `github-dark` and a grain of salt of `rasmus`. So, **Franky** works
-well next `catppuccin` dark themes.
+**Franky** is a color scheme designed for coding, it start as **github-dark** inspired theme frankensteined with **catppuccin-mocha**. So, **Franky** works well along **catppuccin** dark themes when not available for an application.
 
 ## Preview
 
@@ -12,19 +10,27 @@ well next `catppuccin` dark themes.
 
 ## Installation
 
+**Franky** comes with a python installer. The preferred way to install the *cli* is using [UV](https://docs.astral.sh/uv/):
+
 ```bash
 uv tool install franky-theme
 ```
 
+or you could also use [PIPX](https://pipx.pypa.io/stable/):
+
+```bash
+pipx install franky-theme
+```
+
 ## Usage
+
+Most of the themes are simple config file generated on demand by the *cli* and installed on preconfigured location (some themes — like *ipython* — have specific instalation procedure).
 
 ```bash
 $ franky install ghostty
-the ghostty theme will be installed here:
-  /home/gilles/.config/ghostty/themes/franky
-accept? [Y/n]: y
-theme for ghostty is now installed
 ```
+
+![Terminal](assets/term.gif)
 
 ## Road Map
 
