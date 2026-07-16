@@ -71,7 +71,7 @@ c.InteractiveShellApp.extensions.append("franky_ipython")
 
 ## Contributing
 
-Contributors are always welcome. Feel free to grab an [issue](https://github.com/gravures/franky/issues) to work on or make a suggested improvement. If you wish to contribute, please read the [Contribution Guide](https://github.com/gravures/franky/blob/main/contributing.md) and [Code of Conduct](https://github.com/gravures/franky/blob/main/code_of_conduct.md). <!-- rumdl-disable-line MD013 -->
+Contributors are always welcome. Feel free to grab an [issue](https://github.com/gravures/franky/issues) to work on or make a suggested improvement. If you wish to contribute, please read the [Contribution Guide](https://github.com/gravures/franky/blob/main/CONTRIBUTING.md) and [Code of Conduct](https://github.com/gravures/franky/blob/main/CODE_OF_CONDUCT.md). <!-- rumdl-disable-line MD013 -->
 
 ## License
 
