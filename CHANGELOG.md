@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+##  Changelog for release [v1.0.0]
+    
+    https://github.com/gravures/franky/compare/968e6451a8072b85014df22ecdd8de236ea4bb40..v1.0.0
+    2026-07-16
+### Packages
+    
+    - [franky-ipython-v0.1.0](packages/franky-ipython) locked to [franky-ipython-v0.1.0](https://github.com/gravures/franky/tree/franky-ipython-v0.1.0)
+      
+### Fixes
+
+  - **(cli)** fix prefix argument - deluxe API change - ([ef097d2](https://github.com/gravures/franky/commit/ef097d276d96bcc0da79eb8d4611d5e2167d34b7)) - [@gravures](https://github.com/gravures)
+  - **(cli)** fix list command returning nothing when distribution is installed - ([d073170](https://github.com/gravures/franky/commit/d0731701481b8f1839b73ce3620661fbe2449f39)) - [@gravures](https://github.com/gravures)
+
+
+
+- - -
+
 ##  Changelog for release [v0.1.0]
     
     https://github.com/gravures/franky/compare/6d4b700c52432cc56b83ed985025ab2f8839aed0..v0.1.0
