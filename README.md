@@ -55,9 +55,10 @@ c.InteractiveShellApp.extensions.append("franky_ipython")
 
 ## Roadmap
 
+- [x] Bat
+- [x] Ghostty
 - [x] Helix editor
 - [x] IPython shell
-- [x] Ghostty
 - [x] Qman
 - [ ] shell: LS_COLORS + man colors + ncurse colors
 - [ ] Yazi
