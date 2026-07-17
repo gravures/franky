@@ -2,7 +2,7 @@
 
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fgravures%2Ffranky%2Fmain%2Fpyproject.toml) ![GitHub License](https://img.shields.io/github/license/gravures/standard-deluxe) ![OS support](https://img.shields.io/badge/OS-macOS%20Linux%20Windows-red) ![downloads](assets/downloads.svg)
 
-**Franky** is a color scheme designed for coding. It started as a **GitHub Dark**-inspired theme, mixed with elements from **Catppuccin Mocha**. **Franky** works well alongside **Catppuccin** dark themes when the latter are not available for a given application.
+A **GitHub-Dark-inspired** coding palette fused with the UI flavor of **Catppuccin-Mocha**. **Franky** works well alongside **Catppuccin** dark themes when the former are not available for a given application.
 
 ## Preview
 
