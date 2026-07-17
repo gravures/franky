@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+##  Changelog for release [v2.0.0]
+    
+    https://github.com/gravures/franky/compare/49cbdb71eab300309ad039b7249848b0a0542cf7..v2.0.0
+    2026-07-17
+### Packages
+    
+    - [franky-ipython-v0.1.0](packages/franky-ipython) locked to [franky-ipython-v0.1.0](https://github.com/gravures/franky/tree/franky-ipython-v0.1.0)
+      
+### Features
+
+  - **(delta)** adds delta theme - ([ec6f43b](https://github.com/gravures/franky/commit/ec6f43b737c7037c361cc233797fd3d4a2343a5f)) - [@gravures](https://github.com/gravures)
+
+
+### Refactoring
+
+  - **(theme)** [**breaking**] Place is now a Class with a method returning current platorm install path - ([49cbdb7](https://github.com/gravures/franky/commit/49cbdb71eab300309ad039b7249848b0a0542cf7)) - [@gravures](https://github.com/gravures)
+
+
+
+- - -
+
 ##  Changelog for release [v1.1.0]
     
     https://github.com/gravures/franky/compare/c3733dc9350de5e58a4b4470e78f4e211c781e92..v1.1.0
