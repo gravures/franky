@@ -15,7 +15,7 @@
 # along with franky. If not, see <https://www.gnu.org/licenses/>
 #
 # ruff: noqa: D101, D102, D103, ARG002
-"""Franky cli."""
+"""Franky CLI."""
 
 from __future__ import annotations
 
@@ -28,13 +28,13 @@ from importlib import import_module
 from importlib.resources import files
 from os import environ
 from pathlib import Path
-from typing import TYPE_CHECKING, Final, Literal, NamedTuple, Never, cast
+from typing import TYPE_CHECKING, Final, NamedTuple, Never, cast
 
 from deluxe import mureq
-from deluxe.availability import hints
 from deluxe.console.cli import Cli, CliError
 
 from franky import Theme, _version
+from franky._plaftorm import PLATFORM
 
 
 if TYPE_CHECKING:
@@ -67,9 +67,6 @@ HOME: Final[Path] = Path.home()
 CONFIG_DIR: Path = Path(environ.get("XDG_CONFIG_HOME", HOME / ".config")) / PROG_NAME
 STATE_DIR: Path = Path(environ.get("XDG_STATE_HOME", HOME / ".local" / "state")) / PROG_NAME
 DATA_DIR: Path = Path(environ.get("XDG_DATA_HOME", HOME / ".local" / "share")) / PROG_NAME
-PLATFORM: Literal["posix", "darwin", "windows"] = (
-    "darwin" if "darwin" in hints() else "windows" if "windows" in hints() else "posix"
-)
 
 
 class ThemeError(Exception): ...
@@ -135,10 +132,12 @@ def install_theme(name: str, ask: bool) -> None:
     try:  # noqa: PLW0717
         mod = import_module(f"franky.themes.{name}")
         theme: Theme = mod.main()
-        if not (place := theme["place"][PLATFORM]):
-            msg = f"{name} theme is not installable on {PLATFORM} platform."
+        if not (place := theme["place"].current()):
+            msg = f"{name} theme is not available on {PLATFORM} platform."
             raise ThemeError(msg)
         write_theme(name, place, theme["file"], theme["content"], ask)
+        if "doc" in theme:
+            sys.stderr.write(theme["doc"])
     except (AttributeError, KeyError, LookupError) as err:
         msg = "malformed theme."
         raise ThemeError(msg) from err
@@ -155,7 +154,7 @@ def write_theme(name: str, path: Path, file: str, content: str, ask: bool) -> No
     if install_path.exists():
         if (
             ask
-            and (_ := input(f"a <{file}> file already exists, replace it? [Y/n]: "))
+            and (_ := input(f"<{file}> file already exists, replace it? [Y/n]: "))
             and _ in "nN"
         ):
             return
@@ -166,7 +165,7 @@ def write_theme(name: str, path: Path, file: str, content: str, ask: bool) -> No
         path.mkdir(parents=True)
 
     install_path.write_text(content, encoding="UTF-8")
-    sys.stderr.write(f"theme for {name} is now installed\n")
+    sys.stderr.write(f"theme for {name} has been installed\n")
 
 
 def list_theme_modules() -> list[str]:

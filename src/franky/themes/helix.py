@@ -22,6 +22,7 @@ import os
 from pathlib import Path
 
 from franky import UI, Lang, Markup, Mod, Style, Swatch, Theme
+from franky.theme import Place
 
 
 def format(style: Style) -> str:  # noqa: A001
@@ -230,12 +231,12 @@ error = {format(UI.error)}
 'ui.menu.selected' = {format(Style(Swatch.rosewater, Swatch.uv2))}
 'ui.menu.scroll' = {format(Style(Swatch.green, Swatch.uv0))}
 """,
-        "place": {
-            "posix": Path.home() / ".config" / "helix" / "themes",
-            "darwin": Path.home() / ".config" / "helix" / "themes",
-            "windows": Path(os.getenv("APPDATA", Path.home() / "AppData" / "Roaming"))
+        "place": Place(
+            posix=Path.home() / ".config" / "helix" / "themes",
+            darwin=Path.home() / ".config" / "helix" / "themes",
+            windows=Path(os.getenv("APPDATA", Path.home() / "AppData" / "Roaming"))
             / "helix"
             / "themes",
-        },
+        ),
         "file": "franky.toml",
     }

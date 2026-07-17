@@ -24,6 +24,7 @@ import os
 from pathlib import Path
 
 from franky import UI, Generic, Lang, Markup, Meta, Mod, Style, Swatch, Theme
+from franky.theme import Place
 
 
 _SCOPES: list[tuple[str, str, Style]] = [
@@ -1662,12 +1663,12 @@ def main() -> Theme:
 """
     return {
         "content": content,
-        "place": {
-            "posix": Path.home() / ".config" / "bat" / "themes",
-            "darwin": Path.home() / ".config" / "bat" / "themes",
-            "windows": Path(os.getenv("APPDATA", Path.home() / "AppData" / "Roaming"))
+        "place": Place(
+            posix=Path.home() / ".config" / "bat" / "themes",
+            darwin=Path.home() / ".config" / "bat" / "themes",
+            windows=Path(os.getenv("APPDATA", Path.home() / "AppData" / "Roaming"))
             / "bat"
             / "themes",
-        },
+        ),
         "file": "franky.tmTheme",
     }

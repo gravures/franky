@@ -16,19 +16,13 @@
 #
 from __future__ import annotations
 
-from franky.theme import UI, Ansi, Generic, Lang, Markup, Meta, Mod, Place, Style, Swatch, Theme
+from typing import Literal
+
+from deluxe.availability import hints
 
 
-__all__ = [
-    "UI",
-    "Ansi",
-    "Generic",
-    "Lang",
-    "Markup",
-    "Meta",
-    "Mod",
-    "Place",
-    "Style",
-    "Swatch",
-    "Theme",
-]
+PLATFORM: Literal["posix", "darwin", "windows"] = (
+    "darwin" if "darwin" in hints() else "windows" if "windows" in hints() else "posix"
+)
+
+__all__ = ["PLATFORM"]

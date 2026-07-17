@@ -21,6 +21,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from franky import UI, Ansi, Swatch, Theme
+from franky.theme import Place
 
 
 def main() -> Theme:
@@ -53,10 +54,10 @@ cursor-color = {UI.cursor.bg}
 selection-background = {UI.selection.bg}
 selection-foreground = {UI.selection.fg}
 """,
-        "place": {
-            "posix": Path.home() / ".config" / "ghostty" / "themes",
-            "darwin": Path.home() / ".config" / "ghostty" / "themes",
-            "windows": None,
-        },
+        "place": Place(
+            posix=Path.home() / ".config" / "ghostty" / "themes",
+            darwin=Path.home() / ".config" / "ghostty" / "themes",
+            windows=None,
+        ),
         "file": "franky",
     }

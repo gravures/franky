@@ -21,6 +21,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from franky import UI, Mod, Style, Swatch, Theme
+from franky.theme import Place
 
 
 def format(style: Style) -> str:  # noqa: A001
@@ -35,7 +36,7 @@ def format(style: Style) -> str:  # noqa: A001
 
 def main() -> Theme:
     return {
-        "content": f"""; frany.conf
+        "content": f"""; franky.conf
 ; Qman theme
 ; description: franky: a dark theme for Qman
 ; tags:        rgb, unicode, dark
@@ -95,10 +96,10 @@ history_text_f=     {format(Style(Swatch.maroon, Swatch.crust))}
 toc_text=           {format(Style(Swatch.subtext1, Swatch.crust))}
 toc_text_f=         {format(Style(Swatch.maroon, Swatch.crust))}
 """,
-        "place": {
-            "posix": Path.home() / ".config" / "qman" / "themes",
-            "darwin": Path.home() / ".config" / "qman" / "themes",
-            "windows": None,
-        },
+        "place": Place(
+            posix=Path.home() / ".config" / "qman" / "themes",
+            darwin=Path.home() / ".config" / "qman" / "themes",
+            windows=None,
+        ),
         "file": "franky.conf",
     }

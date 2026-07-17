@@ -4,18 +4,27 @@
 
 ```python
 class Theme(TypedDict):
-    content: str      # Full file content (f-string recommended)
-    place: Place      # Per-platform install paths
-    file: str         # Output filename
+    content: str           # Full file content (f-string recommended)
+    place: Place           # Per-platform install paths
+    file: str              # Output filename
+    doc: NotRequired[str]  # Post install hints (how to activate the theme)
 ```
 
-## Place TypedDict
+## Place Dataclass
 
 ```python
-class Place(TypedDict):
+@dataclass
+class Place:
     posix: Path | None
     darwin: Path | None
     windows: Path | None
+
+    def current(self) -> Path | None:
+        """Returns theme install Path.
+
+        Returns: a Path if theme is available on this platform, otherwise None.
+        """
+        ...
 ```
 
 ## Swatch Enum

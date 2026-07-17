@@ -21,19 +21,29 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum, StrEnum
-from typing import TYPE_CHECKING, Literal, TypedDict
+from typing import TYPE_CHECKING, Literal, NotRequired, TypedDict
+
+from franky._plaftorm import PLATFORM
 
 
 if TYPE_CHECKING:
     from pathlib import Path
 
 
-class Place(TypedDict):
+@dataclass
+class Place:
     """Emplacement where Theme should be installed."""
 
     posix: Path | None
     darwin: Path | None
     windows: Path | None
+
+    def current(self) -> Path | None:
+        """Returns theme install Path.
+
+        Returns: a Path if theme is available on this platform, otherwise None.
+        """
+        return getattr(self, PLATFORM)
 
 
 class Theme(TypedDict):
@@ -42,6 +52,7 @@ class Theme(TypedDict):
     content: str
     place: Place
     file: str
+    doc: NotRequired[str]
 
 
 class Swatch(StrEnum):

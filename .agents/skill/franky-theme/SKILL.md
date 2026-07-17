@@ -131,7 +131,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from franky import <needed imports>, Theme
+from franky import <needed imports>, Theme, Place
 
 
 def format(style: Style) -> str:  # noqa: A001
@@ -142,13 +142,16 @@ def format(style: Style) -> str:  # noqa: A001
 def main() -> Theme:
     return {
         "content": f"""...""",
-        "place": {
-            "posix": Path.home() / ".config" / "<app>" / "<subdir>",
-            "darwin": Path.home() / ".config" / "<app>" / "<subdir>",
-            "windows": Path(os.getenv("APPDATA", Path.home() / "AppData" / "Roaming"))
+        "place": Place(
+            posix=Path.home() / ".config" / "<app>" / "<subdir>",
+            darwin=Path.home() / ".config" / "<app>" / "<subdir>",
+            windows=Path(os.getenv("APPDATA", Path.home() / "AppData" / "Roaming"))
             / "<app>" / "<subdir>",
-        },
+        ),
         "file": "<filename>.<ext>",
+        "doc": """
+Any hints if required on how to activate the theme after installation.
+"""
     }
 ```
 
@@ -203,7 +206,7 @@ def format(style: Style) -> str:
     return json.dumps(d, indent=2)
 ```
 
-### 7. Set the place dict
+### 7. Set the place instance
 
 Platform-specific install paths. Set to `None` if unsupported.
 
@@ -310,13 +313,6 @@ Style(Swatch.sky, UI.status_line.bg)                # use UI enum as base
    ```
 
 5. **XML escaping**: Escape `&` as `&amp;` in scope names and strings for XML-based formats.
-
-6. **Verification**: Always test with actual files to verify colors are correct. Check that:
-   - Comments are grey
-   - Strings are blue
-   - Keywords are red
-   - Functions are purple
-   - Docstrings are strings (blue), not comments (grey)
 
 ## References
 
