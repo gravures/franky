@@ -46,12 +46,20 @@ class Place:
         return getattr(self, PLATFORM)
 
 
+class File(TypedDict):
+    """Interface for additional files."""
+
+    path: Path
+    content: str
+
+
 class Theme(TypedDict):
     """Interface for franky theme implementations."""
 
     content: str
     place: Place
     file: str
+    files: NotRequired[list[File]]
     doc: NotRequired[str]
 
 
@@ -321,6 +329,10 @@ class UI(Style, Enum):
 
     scrollbar_track = Swatch.uv0, Swatch.uv0
     scrollbar_knob = Swatch.lang_purple, Swatch.uv0
+
+    popup = Swatch.subtext0, Swatch.surface1
+    popup_boder = Swatch.mauve
+    popup_info = Swatch.mauve
 
 
 class Markup(Style, Enum):

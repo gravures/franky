@@ -132,40 +132,52 @@ def install_theme(name: str, ask: bool) -> None:
     try:  # noqa: PLW0717
         mod = import_module(f"franky.themes.{name}")
         theme: Theme = mod.main()
+
         if not (place := theme["place"].current()):
             msg = f"{name} theme is not available on {PLATFORM} platform."
             raise ThemeError(msg)
-        write_theme(name, place, theme["file"], theme["content"], ask)
+
+        sys.stderr.write(f"the {name} theme will be installed here:\n")
+        sys.stderr.write(f"  {place}\n")
+        if ask and (_ := input("accept? [Y/n]: ")) and _ in "nN":
+            return
+
+        # main theme file
+        write_theme_file(place / theme["file"], theme["content"], ask)
+
+        # additional files
+        if files := theme.get("files"):
+            for file in files:
+                if file["path"].is_absolute():
+                    msg = "additional file paths should be relative."
+                    raise ThemeError(msg)
+                write_theme_file(place / file["path"], file["content"], ask)
+
+        # user hints
         if "doc" in theme:
             sys.stderr.write(theme["doc"])
+
+        sys.stderr.write(f"theme for {name} has been installed\n")
     except (AttributeError, KeyError, LookupError) as err:
         msg = "malformed theme."
         raise ThemeError(msg) from err
 
 
-def write_theme(name: str, path: Path, file: str, content: str, ask: bool) -> None:
-    install_path = Path(path, file)
-    sys.stderr.write(f"the {name} theme will be installed here:\n")
-    sys.stderr.write(f"  {install_path}\n")
-
-    if ask and (_ := input("accept? [Y/n]: ")) and _ in "nN":
-        return
-
-    if install_path.exists():
+def write_theme_file(path: Path, content: str, ask: bool) -> None:
+    if path.exists():
         if (
             ask
-            and (_ := input(f"<{file}> file already exists, replace it? [Y/n]: "))
+            and (_ := input(f"<{path}> file already exists, replace it? [Y/n]: "))
             and _ in "nN"
         ):
             return
         # TODO: add option to backup the file
-        install_path.unlink()
+        path.unlink()
 
-    if not path.is_dir():
-        path.mkdir(parents=True)
+    if not path.parent.is_dir():
+        path.parent.mkdir(parents=True)
 
-    install_path.write_text(content, encoding="UTF-8")
-    sys.stderr.write(f"theme for {name} has been installed\n")
+    path.write_text(content, encoding="UTF-8")
 
 
 def list_theme_modules() -> list[str]:
