@@ -57,9 +57,11 @@ c.InteractiveShellApp.extensions.append("franky_ipython")
 
 - [x] Bat
 - [x] Delta
+- [x] Diffnav (supported via Delta)
 - [x] Ghostty
 - [x] Helix editor
 - [x] IPython shell
+- [x] Lazygit
 - [x] Qman
 - [x] Yazi
 - [ ] shell: LS_COLORS + man colors + ncurse colors
