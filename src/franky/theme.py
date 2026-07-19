@@ -331,7 +331,7 @@ class UI(Style, Enum):
     scrollbar_knob = Swatch.lang_purple, Swatch.uv0
 
     popup = Swatch.subtext0, Swatch.surface1
-    popup_boder = Swatch.mauve
+    popup_border = Swatch.mauve
     popup_info = Swatch.mauve
 
 

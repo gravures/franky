@@ -169,7 +169,7 @@ title_warn  = {format(UI.warning)}
 title_error = {format(UI.error)}
 
 [spot]
-border = {format(UI.popup_boder)}
+border = {format(UI.popup_border)}
 title  = {format(UI.popup)}
 tbl_cell = {format(Style(Swatch.mauve, mods=(Mod.reversed,)))}
 tbl_col = {format(Style(mods=(Mod.bold,)))}
