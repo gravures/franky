@@ -153,11 +153,12 @@ def install_theme(name: str, ask: bool) -> None:
                     raise ThemeError(msg)
                 write_theme_file(place / file["path"], file["content"], ask)
 
+        sys.stderr.write(f"theme for {name} has been installed\n")
+
         # user hints
         if "doc" in theme:
             sys.stderr.write(theme["doc"])
 
-        sys.stderr.write(f"theme for {name} has been installed\n")
     except (AttributeError, KeyError, LookupError) as err:
         msg = "malformed theme."
         raise ThemeError(msg) from err
