@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+##  Changelog for release [v2.2.0]
+    
+    https://github.com/gravures/franky/compare/cfb12ac46c14780c4c7754d4bd0666c1bf853a6a..v2.2.0
+    2026-07-19
+### Packages
+    
+    - [franky-ipython-v0.1.0](packages/franky-ipython) locked to [franky-ipython-v0.1.0](https://github.com/gravures/franky/tree/franky-ipython-v0.1.0)
+      
+### Features
+
+  - **(lazygit)** adds lazygit theme - ([33f99a6](https://github.com/gravures/franky/commit/33f99a6d17fc707a2fd4050c5e90cfaa45dc4cf6)) - [@gravures](https://github.com/gravures)
+
+
+### Refactoring
+
+  - **(cli)** fix install messages - ([8c84051](https://github.com/gravures/franky/commit/8c8405127b6cd4f85a2fb9615191238671c31763)) - [@gravures](https://github.com/gravures)
+
+  - **(theme)** fix bad enum member naming - ([2a0aa6c](https://github.com/gravures/franky/commit/2a0aa6c8cfe4dc75e628f3b8ba7e022b954ddc23)) - [@gravures](https://github.com/gravures)
+
+
+
+- - -
+
 ##  Changelog for release [v2.1.0]
     
     https://github.com/gravures/franky/compare/f6afdba7e8e101b50dc3265b73d2782d7afaaf7c..v2.1.0
