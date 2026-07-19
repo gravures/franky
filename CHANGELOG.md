@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+##  Changelog for release [v2.1.0]
+    
+    https://github.com/gravures/franky/compare/f6afdba7e8e101b50dc3265b73d2782d7afaaf7c..v2.1.0
+    2026-07-19
+### Packages
+    
+    - [franky-ipython-v0.1.0](packages/franky-ipython) locked to [franky-ipython-v0.1.0](https://github.com/gravures/franky/tree/franky-ipython-v0.1.0)
+      
+### Features
+
+  - **(theme)** add option to install compagnon files - ([a10e132](https://github.com/gravures/franky/commit/a10e132986856cfbc511a868eb4984b40bbc00c8)) - [@gravures](https://github.com/gravures)
+
+  - **(yazi)** adds yazi theme - ([70650e2](https://github.com/gravures/franky/commit/70650e23399e7c2cc4c7551fe8f400293faaa022)) - [@gravures](https://github.com/gravures)
+
+
+
+- - -
+
 ##  Changelog for release [v2.0.0]
     
     https://github.com/gravures/franky/compare/49cbdb71eab300309ad039b7249848b0a0542cf7..v2.0.0
