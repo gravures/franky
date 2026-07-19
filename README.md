@@ -53,7 +53,7 @@ c.InteractiveShellApp.extensions.append("franky_ipython")
 
 ![ipython](assets/ipy.gif)
 
-## Roadmap
+## Themes Roadmap
 
 - [x] Bat
 - [x] Delta
