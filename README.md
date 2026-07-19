@@ -61,8 +61,8 @@ c.InteractiveShellApp.extensions.append("franky_ipython")
 - [x] Helix editor
 - [x] IPython shell
 - [x] Qman
+- [x] Yazi
 - [ ] shell: LS_COLORS + man colors + ncurse colors
-- [ ] Yazi
 - [ ] Tmux
 - [ ] Zellij
 - [ ] Glow

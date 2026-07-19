@@ -47,9 +47,9 @@ def format(style: Style) -> str:  # noqa: A001
 
 def main() -> Theme:
     return {
-        "content": f"""
-##
-# Helix Franky Theme
+        "content": f"""# Author: Franky Theme <https://github.com/gravures/franky>
+# License: GPL-3.0
+# Franky - A GitHub-Dark-inspired coding palette fused with the UI flavor of Catppuccin-Mocha
 
 # LANGUAGE
 attribute = {format(Lang.attribute)}
