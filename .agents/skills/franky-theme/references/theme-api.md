@@ -7,6 +7,7 @@ class Theme(TypedDict):
     content: str           # Full file content (f-string recommended)
     place: Place           # Per-platform install paths
     file: str              # Output filename
+    files: NotRequired[list[File]]  # theme additional files
     doc: NotRequired[str]  # Post install hints (how to activate the theme)
 ```
 
