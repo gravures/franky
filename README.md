@@ -61,15 +61,21 @@ c.InteractiveShellApp.extensions.append("franky_ipython")
 - [x] Ghostty
 - [x] Helix editor
 - [x] IPython shell
+- [x] Kitty
 - [x] Lazygit
 - [x] Qman
 - [x] Yazi
+- [ ] OpenCode
+- [ ] Neovim
+- [ ] Emacs
+- [ ] Zed
+- [ ] VsCode
+- [ ] Gtk.SourceView
 - [ ] shell: LS_COLORS + man colors + ncurse colors
 - [ ] Tmux
 - [ ] Zellij
 - [ ] Glow
 - [ ] CSS
-- [ ] Gtk.SourceView
 - [ ] Gnome Shell
 
 ## Contributing
