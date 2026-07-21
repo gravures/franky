@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+##  Changelog for release [v2.3.0]
+    
+    https://github.com/gravures/franky/compare/b4db4287cd78b111aae34c397080be1ad1af1ad7..v2.3.0
+    2026-07-20
+### Packages
+    
+    - [franky-ipython-v0.1.0](packages/franky-ipython) locked to [franky-ipython-v0.1.0](https://github.com/gravures/franky/tree/franky-ipython-v0.1.0)
+      
+### Features
+
+  - **(kitty)** adds kitty theme - ([b4db428](https://github.com/gravures/franky/commit/b4db4287cd78b111aae34c397080be1ad1af1ad7)) - [@gravures](https://github.com/gravures)
+
+
+
+- - -
+
 ##  Changelog for release [v2.2.0]
     
     https://github.com/gravures/franky/compare/cfb12ac46c14780c4c7754d4bd0666c1bf853a6a..v2.2.0
