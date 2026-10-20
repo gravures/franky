@@ -193,8 +193,8 @@ error = {format(UI.error)}
 'diff.delta' = {format(UI.diff_delta)}
 'diff.delta.moved' = {format(UI.diff_delta_moved)}
 
-'ui.debug.breakpoint' = "text"
-'ui.debug.active' = "sky"
+'ui.debug.breakpoint' = {format(Style(Swatch.text))}
+'ui.debug.active' = {format(Style(Swatch.sky))}
 
 'ui.gutter' = {format(UI.gutter)}
 'ui.gutter.selected' = {format(UI.gutter_selected)}
