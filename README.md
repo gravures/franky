@@ -65,6 +65,7 @@ c.InteractiveShellApp.extensions.append("franky_ipython")
 - [x] Lazygit
 - [x] Qman
 - [x] Yazi
+- [ ] Atuin
 - [ ] OpenCode
 - [ ] Neovim
 - [ ] Emacs
