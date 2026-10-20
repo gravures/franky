@@ -268,8 +268,8 @@ class Generic(Style, Enum):
 class UI(Style, Enum):
     """Style names for ui elements."""
 
-    background = Swatch.subtext1, Swatch.base
-    background_separator = Swatch.subtext1, Swatch.base
+    background = Swatch.surface1, Swatch.base
+    background_separator = Swatch.surface1, Swatch.base
     tui_background = Swatch.subtext1, Swatch.mantle
 
     cursor = Swatch.base, Swatch.overlay2
