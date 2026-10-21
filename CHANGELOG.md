@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+##  Changelog for release [v2.3.2]
+    
+    https://github.com/gravures/franky/compare/d58d98fa868abc25cce8f8a5c60505ef75717724..v2.3.2
+    2026-10-21
+### Packages
+    
+    - [franky-ipython-v0.1.0](packages/franky-ipython) locked to [franky-ipython-v0.1.0](https://github.com/gravures/franky/tree/franky-ipython-v0.1.0)
+      
+### Style
+
+  - **(helix)** give ui popup a fg value to set an optional popup border color - ([d58d98f](https://github.com/gravures/franky/commit/d58d98fa868abc25cce8f8a5c60505ef75717724)) - [@gravures](https://github.com/gravures)
+
+  - **(ui)** set ui.gutter_selected background to a quieter value - ([c8bbb2e](https://github.com/gravures/franky/commit/c8bbb2e7245913d0481058954f1d607fecdaa328)) - [@gravures](https://github.com/gravures)
+
+
+
+- - -
+
 ##  Changelog for release [v2.3.1]
     
     https://github.com/gravures/franky/compare/a36d6d98708f007ea7f374d6f5a4a14d0e6c64bd..v2.3.1
