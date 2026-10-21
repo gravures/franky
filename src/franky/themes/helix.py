@@ -216,7 +216,7 @@ error = {format(UI.error)}
 
 # WIDGETS
 'ui.window' = {format(Style(Swatch.surface1, Swatch.base))}  # window == split
-'ui.popup' = {format(Style(None, Swatch.surface1))}
+'ui.popup' = {format(Style(Swatch.surface1, Swatch.mantle))}
 'ui.popup.info' = {format(Style(Swatch.mauve))}  # popup border & title
 'ui.text.info' = {format(Style(Swatch.subtext0))}
 'ui.help' = {format(Style(Swatch.subtext0, Swatch.crust))}
