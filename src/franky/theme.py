@@ -315,7 +315,7 @@ class UI(Style, Enum):
     diff_delta_moved = Swatch.sky
 
     gutter = None, Swatch.base
-    gutter_selected = None, Swatch.uv1
+    gutter_selected = None, Swatch.mantle
 
     status_line = Swatch.overlay2, Swatch.mantle
     status_line_inactive = Swatch.surface2, Swatch.mantle
